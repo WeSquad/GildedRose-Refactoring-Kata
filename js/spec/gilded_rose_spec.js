@@ -87,4 +87,31 @@ describe("Gilded Rose", function() {
 
     expect(shop.items[0].quality).toEqual(quality + 1);
   });
+
+  it('Backstage passes should increase quality by two if sellIn < 10 and >5', function() {
+    const quality = 10;
+    shop = init('Backstage passes to a TAFKAL80ETC concert', 9, quality);
+
+    shop.updateQuality();
+
+    expect(shop.items[0].quality).toEqual(quality + 2);
+  });
+
+  it('Backstage passes should increase quality by tree if sellIn < 5 and >0', function() {
+    const quality = 10;
+    shop = init('Backstage passes to a TAFKAL80ETC concert', 3, quality);
+
+    shop.updateQuality();
+
+    expect(shop.items[0].quality).toEqual(quality + 3);
+  });
+
+  it('Backstage passes should not increase if sellIn  =0', function() {
+    const quality = 10;
+    shop = init('Backstage passes to a TAFKAL80ETC concert', 3, quality);
+
+    shop.updateQuality();
+
+    expect(shop.items[0].quality).toEqual(quality + 3);
+  });
 });
