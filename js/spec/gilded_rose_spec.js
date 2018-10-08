@@ -1,9 +1,6 @@
 describe("Gilded Rose", function() {
 
-  init = function() {
-    name = 'test';
-    sellIn = 10;
-    quality = 10;
+  init = function(name, sellIn, quality) {
     item = new Item(name, sellIn, quality);
     shop = new Shop();
     shop.items.push(item);
@@ -11,7 +8,8 @@ describe("Gilded Rose", function() {
   }
 
   it('should decrease sell in value at the end of the day', function() {
-    shop = init();
+    const sellIn = 10;
+    shop = init('test', sellIn, 10);
 
     shop.updateQuality();
 
@@ -19,7 +17,8 @@ describe("Gilded Rose", function() {
   });
 
   it('should decrease quality value at the end of the day', function() {
-    shop = init();
+    const quality = 10;
+    shop = init('test', 10, quality);
 
     shop.updateQuality();
 
@@ -27,12 +26,8 @@ describe("Gilded Rose", function() {
   });
 
   it('should decrease quality by two if sellin < 0', function() {
-    name = 'test';
-    sellIn = 0;
-    quality = 10;
-    item = new Item(name, sellIn, quality);
-    shop = new Shop();
-    shop.items.push(item);
+    const quality = 10
+    init('test', 0, quality);
 
     shop.updateQuality();
 
