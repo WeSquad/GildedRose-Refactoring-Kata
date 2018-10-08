@@ -108,10 +108,10 @@ describe("Gilded Rose", function() {
 
   it('Backstage passes should not increase if sellIn  =0', function() {
     const quality = 10;
-    shop = init('Backstage passes to a TAFKAL80ETC concert', 3, quality);
+    shop = init('Backstage passes to a TAFKAL80ETC concert', 0, quality);
 
     shop.updateQuality();
 
-    expect(shop.items[0].quality).toEqual(quality + 3);
+    expect(shop.items[0].quality).toEqual(0);
   });
 });
