@@ -22,15 +22,33 @@ describe("Gilded Rose", function() {
 
     shop.updateQuality();
 
-    expect(shop.items[0].quality).toEqual(quality-1);
+    expect(shop.items[0].quality).toEqual(quality - 1);
   });
 
   it('should decrease quality by two if sellin < 0', function() {
     const quality = 10
-    init('test', 0, quality);
+    shop = init('test', 0, quality);
 
     shop.updateQuality();
 
-    expect(shop.items[0].quality).toEqual(quality-2);
+    expect(shop.items[0].quality).toEqual(quality - 2);
+  });
+
+  it('quality should always be > 0', function() {
+    const quality = 0;
+    shop = init('test', 10, quality);
+
+    shop.updateQuality();
+
+    expect(shop.items[0].quality).toEqual(0);
+  });
+
+  it('aged brie showld increase quality by time', function() {
+    quality = 10;
+    shop = init('Aged Brie', 10, quality);
+
+    shop.updateQuality();
+
+    expect(shop.items[0].quality).toEqual(quality + 1);
   });
 });
