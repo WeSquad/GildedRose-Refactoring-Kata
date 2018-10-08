@@ -1,9 +1,16 @@
 describe("Gilded Rose", function() {
 
-  it("should foo", function() {
-    const gildedRose = new Shop([ new Item("foo", 0, 0) ]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].name).toEqual("fixme");
+  it('should decrease sell in value at the end of the day', function() {
+    const name = 'test';
+    const sellIn = 10;
+    const quality = 10;
+    const item = new Item(name, sellIn, quality);
+    const shop = new Shop();
+    shop.items.push(item);
+
+    shop.updateQuality();
+
+    expect(shop.items[0].sellIn).toEqual(sellIn-1);
   });
 
 });
