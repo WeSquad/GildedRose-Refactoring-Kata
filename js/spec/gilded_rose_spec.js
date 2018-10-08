@@ -51,4 +51,22 @@ describe("Gilded Rose", function() {
 
     expect(shop.items[0].quality).toEqual(quality + 1);
   });
+
+  it('quality should always be < 50', function() {
+    const quality = 50;
+    shop = init('Aged Brie', 10, quality);
+
+    shop.updateQuality();
+
+    expect(shop.items[0].quality).toEqual(quality);
+  });
+
+  it('Sulfura should never decease in quality', function() {
+    const quality = 10;
+    shop = init('Sulfuras, Hand of Ragnaros', 10, quality);
+
+    shop.updateQuality();
+
+    expect(shop.items[0].quality).toEqual(quality);
+  });
 });
