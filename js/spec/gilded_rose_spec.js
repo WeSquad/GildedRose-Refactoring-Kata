@@ -69,4 +69,22 @@ describe("Gilded Rose", function() {
 
     expect(shop.items[0].quality).toEqual(quality);
   });
+
+  it('Sulfura should never be sold', function() {
+    const sellIn = 10;
+    shop = init ('Sulfuras, Hand of Ragnaros', sellIn, 10);
+
+    shop.updateQuality();
+
+    expect(shop.items[0].sellIn).toEqual(sellIn);
+  })
+
+  it('Backstage passes should increase quality by one if sellIn > 10', function() {
+    const quality = 10;
+    shop = init('Backstage passes to a TAFKAL80ETC concert', 11, quality);
+
+    shop.updateQuality();
+
+    expect(shop.items[0].quality).toEqual(quality + 1);
+  });
 });
