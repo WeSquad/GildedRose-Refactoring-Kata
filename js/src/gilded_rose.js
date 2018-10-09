@@ -12,15 +12,38 @@ class Shop {
   }
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
-      let item = this.items[i];
-      switch (item.name) {
+      
+      switch (this.items[i].name) {
         case 'Aged Brie':
+          this.items[i]=this.updateSellInDefaultItem(this.items[i]);
+          if (this.items[i].quality < 50) {
+            this.items[i].quality = this.items[i].quality + 1;
+          }
           break;
         case 'Backstage passes to a TAFKAL80ETC concert':
+
+          if (this.items[i].quality < 50) {
+            this.items[i].quality = this.items[i].quality + 1;
+            if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
+              if (this.items[i].sellIn < 11) {
+                if (this.items[i].quality < 50) {
+                  this.items[i].quality = this.items[i].quality + 1;
+                }
+              }
+              if (this.items[i].sellIn < 6) {
+                if (this.items[i].quality < 50) {
+                  this.items[i].quality = this.items[i].quality + 1;
+                }
+              }
+            }
+          }
+
+          this.items[i] = this.updateSellInDefaultItem(this.items[i]);
           break;
         case 'Sulfuras, Hand of Ragnaros':
           break;
         default:
+        this.items[i] = this.updateSellInDefaultItem(this.items[i]);
           break;
       }
       if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
@@ -30,24 +53,10 @@ class Shop {
           }
         }
       } else {
-        if (this.items[i].quality < 50) {
-          this.items[i].quality = this.items[i].quality + 1;
-          if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
-            if (this.items[i].sellIn < 11) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
-            if (this.items[i].sellIn < 6) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
-          }
-        }
+       
       }
       if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-        this.items[i].sellIn = this.items[i].sellIn - 1;
+        // this.items[i].sellIn = this.items[i].sellIn - 1;
       }
       if (this.items[i].sellIn < 0) {
         if (this.items[i].name != 'Aged Brie') {
@@ -61,9 +70,7 @@ class Shop {
             this.items[i].quality = this.items[i].quality - this.items[i].quality;
           }
         } else {
-          if (this.items[i].quality < 50) {
-            this.items[i].quality = this.items[i].quality + 1;
-          }
+         
         }
       }
     }
@@ -71,7 +78,7 @@ class Shop {
     return this.items;
   }
 
-  updateQualityDefaultItem(item) {
+  updateSellInDefaultItem(item) {
     item.sellIn --;
 
     return item;
