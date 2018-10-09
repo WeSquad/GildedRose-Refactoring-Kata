@@ -12,6 +12,17 @@ class Shop {
   }
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
+      let item = this.items[i];
+      switch (item.name) {
+        case 'Aged Brie':
+          break;
+        case 'Backstage passes to a TAFKAL80ETC concert':
+          break;
+        case 'Sulfuras, Hand of Ragnaros':
+          break;
+        default:
+          break;
+      }
       if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
         if (this.items[i].quality > 0) {
           if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
