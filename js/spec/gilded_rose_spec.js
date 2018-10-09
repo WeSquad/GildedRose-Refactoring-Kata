@@ -126,4 +126,24 @@ describe("update default item", function() {
   
     expect(item.sellIn).toEqual(sellIn-1);
   });
+
+  it('should decrease quality by one', function() {
+    const quality = 10;
+    let item = new Item('test', 10, quality);
+    const shop = new Shop();
+  
+    item = shop.updateQualityDefaultItem(item);
+  
+    expect(item.quality).toEqual(quality-1);
+  });
+
+  it('aged brie function should increase quality by one', function() {
+    const quality = 10;
+    let item = new Item('Aged Brie', 10, quality);
+    const shop = new Shop();
+  
+    item = shop.updateAgedBrieQuality(item);
+  
+    expect(item.quality).toEqual(quality+1);
+  });
 });

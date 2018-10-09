@@ -17,7 +17,7 @@ class Shop {
         case 'Aged Brie':
           this.items[i]=this.updateSellInDefaultItem(this.items[i]);
           if (this.items[i].quality < 50) {
-            this.items[i].quality = this.items[i].quality + 1;
+            this.items[i] = this.updateAgedBrieQuality(this.items[i]);
           }
           break;
         case 'Backstage passes to a TAFKAL80ETC concert':
@@ -81,6 +81,18 @@ class Shop {
   updateSellInDefaultItem(item) {
     item.sellIn --;
 
+    return item;
+  }
+
+  updateQualityDefaultItem(item) {
+    item.quality --;
+
+    return item;
+  }
+
+  updateAgedBrieQuality(item) {
+    item.quality ++;
+    
     return item;
   }
 }
