@@ -115,3 +115,15 @@ describe("Gilded Rose", function() {
     expect(shop.items[0].quality).toEqual(0);
   });
 });
+
+describe("updateQualityDefaultItem", function() {
+  it('should decrease sellIn by one', function() {
+    const sellIn = 10;
+    let item = new Item('test', sellIn, 10);
+    const shop = new Shop();
+  
+    item = shop.updateQualityDefaultItem(item);
+  
+    expect(item.sellIn).toEqual(sellIn-1);
+  });
+});

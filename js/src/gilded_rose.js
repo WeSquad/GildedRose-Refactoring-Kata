@@ -70,4 +70,10 @@ class Shop {
 
     return this.items;
   }
+
+  updateQualityDefaultItem(item) {
+    item.sellIn --;
+
+    return item;
+  }
 }
